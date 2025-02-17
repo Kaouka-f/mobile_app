@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "717081618861",
+    "project_id": "kaouka",
+    "storage_bucket": "kaouka.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:717081618861:android:a28e244adf193657aa9924",
+        "android_client_info": {
+          "package_name": "com.elaborium.kaouka"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAXOVDtuiT1SXtj89Z7sR9JmNfNUcHwcPQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

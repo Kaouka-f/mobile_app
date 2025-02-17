@@ -1,0 +1,83 @@
+// MY FAVORITE
+const forthColor = Color(0xFF65647C);
+const thirdColor = Color(0xFF8B7E74);
+const firstColor = Color(0xFFC7BCA1);
+const secondColor = Color(0xFFF1D3B3);
+const fifthColor = Colors.white;
+const sixthColor = Colors.black;
+
+// PUBLIC FAVORITE 2
+const firstColor = Color(0xFFCABFAB);
+const secondColor = Color(0xFFDFD8C8);
+const thirdColor = Color(0xFF41444B);
+const forthColor = Color(0xFF52575D);
+const fifthColor = Colors.white;
+const sixthColor = Colors.black;
+
+// FINAL
+const firstColor = Color(0xFFF4F4F2);
+const secondColor = Color(0xFFE8E8E8);
+const thirdColor = Color.fromARGB(255, 138, 140, 145);
+const forthColor = Color.fromARGB(255, 66, 75, 89);
+const fifthColor = Colors.white;
+const sixthColor = Colors.black;
+
+const firstColor = Color(0xFFF0E9D2);
+const secondColor = Color(0xFFE6DDC4);
+const thirdColor = Color(0xFF678983);
+const forthColor = Color(0xFF181D31);
+const fifthColor = Colors.white;
+const sixthColor = Colors.black;
+
+const firstColor = Color(0xFFE8ECF1);
+const secondColor = Color(0xFFB5CFD8);
+const thirdColor = Color(0xFF7393A7);
+const forthColor = Color(0xFF6C737E);
+const fifthColor = Colors.white;
+const sixthColor = Colors.black;
+
+const firstColor = Color(0xFFE7E0C9);
+const secondColor = Color(0xFFC1CFC0);
+const thirdColor = Color(0xFF6B7AA1);
+const forthColor = Color(0xFF11324D);
+const fifthColor = Colors.white;
+const sixthColor = Colors.black;
+
+// SELECTION
+const firstColor = Color(0xFFCFD3CE);
+const secondColor = Color(0xFFC6B497);
+const thirdColor = Color(0xFF839B97);
+const forthColor = Color(0xFF34626C);
+const fifthColor = Colors.white;
+const sixthColor = Colors.black;
+
+const firstColor = Color(0xFFE7DEC8);
+const secondColor = Color(0xFFCBAF87);
+const thirdColor = Color(0xFF7E8A97);
+const forthColor = Color(0xFF30475E);
+const fifthColor = Colors.white;
+const sixthColor = Colors.black;
+
+// BLACK AND WHITE
+const firstColor = Colors.white;
+const secondColor = Colors.white;
+const thirdColor = Colors.black;
+const forthColor = Colors.black;
+const fifthColor = Colors.white;
+const sixthColor = Colors.black;
+
+const firstColor = Color(0xFFC2DEDC);
+const secondColor = Color(0xFFECE5C7);
+const thirdColor = Color(0xFFCDC2AE);
+const forthColor = Color(0xFF116A7B);
+const fifthColor = Colors.black;
+const sixthColor = Colors.black;
+
+const firstColor = Color(0xFFF0ECE3);
+const secondColor = Color(0xFFDFD3C3);
+const thirdColor = Color(0xFFC7B198);
+const forthColor = Color(0xFF596E79);
+const fifthColor = Colors.white;
+const sixthColor = Colors.black;
+
+const seventhColor = Color.fromARGB(255, 238, 191, 140);

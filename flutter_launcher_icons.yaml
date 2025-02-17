@@ -1,0 +1,7 @@
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/kaouka.png"
+  adaptive_icon_background: "#FF5722"
+  adaptive_icon_foreground: "assets/kaouka.png"
+  remove_alpha_ios: true
