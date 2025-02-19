@@ -38,13 +38,14 @@ class NotificationComponent {
 
     const DarwinInitializationSettings initializationSettingsIOS =
         DarwinInitializationSettings(
-            requestAlertPermission: true,
-            requestBadgePermission: true,
-            requestSoundPermission: true,
-            requestProvisionalPermission: true,
-            requestCriticalPermission: true,
-            defaultPresentList: true,
-            onDidReceiveLocalNotification: _handleReceiveNotification);
+      requestAlertPermission: true,
+      requestBadgePermission: true,
+      requestSoundPermission: true,
+      requestProvisionalPermission: true,
+      requestCriticalPermission: true,
+      defaultPresentList: true,
+      // onDidReceiveLocalNotification: _handleReceiveNotification
+    );
 
     const InitializationSettings initializationSettings =
         InitializationSettings(

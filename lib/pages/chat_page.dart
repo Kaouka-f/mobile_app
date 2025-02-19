@@ -12,7 +12,7 @@ import '../database.dart';
 import '../message.dart';
 import '../theme.dart';
 import '../shared_data.dart';
-import 'package:flutter_app_badger/flutter_app_badger.dart';
+import 'package:flutter_app_badge_control/flutter_app_badge_control.dart';
 
 class ChatPage extends StatefulWidget {
   final String id;
@@ -40,7 +40,7 @@ class _ChatPageState extends State<ChatPage> {
   Future<void> getMessages() async {
     await databaseHelper.readMessages(widget.id);
     final tmp = await databaseHelper.getMessages(widget.id);
-    FlutterAppBadger.removeBadge();
+    FlutterAppBadgeControl.removeBadge();
     // for (CustomMessage message in tmp) {
     //   print(message.message);
     //   print(message.timestamp);

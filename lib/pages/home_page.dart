@@ -26,7 +26,7 @@ import 'extra_page.dart';
 import 'contact_page.dart';
 import 'dart:async';
 import '../http_manager.dart';
-import 'package:connectivity/connectivity.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 import '../logging.dart';
 
 enum AppState { connected, disconnected }
@@ -171,7 +171,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
     await handleMsg();
   }
 
-  lostConn(ConnectivityResult result) async {
+  lostConn(List<ConnectivityResult> result) async {
     setState(() {
       _connectivityResult = result;
       if (_connectivityResult == ConnectivityResult.none) {
@@ -182,7 +182,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
     });
   }
 
-  late ConnectivityResult _connectivityResult;
+  late List<ConnectivityResult> _connectivityResult;
   final Connectivity _connectivity = Connectivity();
   // late StreamSubscription<ConnectivityResult> _connectivitySubscription;
 
@@ -307,6 +307,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
         Provider.of<PersistentImageProvider>(context, listen: false).offset;
     // PersistentModeProvider modeProvider =
     //     Provider.of<PersistentModeProvider>(context, listen: false);
+    const bool showHiddenPage = bool.fromEnvironment('SHOW_HIDDEN_PAGE');
     return Scaffold(
       body: !lostConnection
           ? PageView(
