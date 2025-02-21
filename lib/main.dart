@@ -151,7 +151,6 @@ Future<void> main() async {
     }
     sharedData.setId = encodeId(id);
   }
-  print(id);
   if (Platform.isAndroid) {
     _registerMethodChannel();
     _invokeNativeMethod();

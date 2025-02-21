@@ -13,7 +13,9 @@ import 'dart:convert';
 import 'person.dart';
 import 'utils.dart';
 
-String host = "elaborium.site";
+const mode = String.fromEnvironment('MODE');
+
+String host = mode == "TEST" ? "192.168.1.49" :"elaborium.site";
 int port = 443;
 bool secure = true;
 
@@ -694,21 +696,22 @@ Future<dynamic> sendMsg(
     'personId': personId,
     'targetPersonId': targetPersonId,
     'message': message,
-    'ext': file.path.isNotEmpty ? file.path.split('.').last : ''
+    // 'filename': file.path.isNotEmpty ? file.path.split('.').last : ''
   };
-  dynamic res = await sendFile(data, file, "sendMsg");
-  dynamic resJson = jsonDecode(res);
-  if (resJson['media'] != null) {
-    filepath = resJson['media'];
+  // dynamic res = await sendFile(data, file, "sendMsg");
+  dynamic res = await post(data, "sendMsg");
+  if (res['media'] != null) {
+    filepath = res['media'];
   }
-  if (resJson['result'] == "true") {
+  print(res);
+  if (res['result'] == "true") {
     final DatabaseHelper databaseHelper = DatabaseHelper.instance;
     DateTime currentTimeUtc = DateTime.now().toUtc();
     String timestampIsoString = currentTimeUtc.toIso8601String();
     databaseHelper.insertMessage(
         timestampIsoString, message, targetPersonId, true, filepath);
-    return {true, resJson['media']};
-  } else if (resJson['result'] == "blocked") {
+    return {true, res['media']};
+  } else if (res['result'] == "blocked") {
     return {false, "blocked"};
   }
   return {false, ""};
