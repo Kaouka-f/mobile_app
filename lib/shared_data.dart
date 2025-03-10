@@ -10,16 +10,17 @@ class SharedData {
 
   SharedPreferences? _prefs;
 
-  bool cleared = false;
   String id = "123";
   String name = "undefined";
-  bool visible = true;
-  bool payed = false;
   String imageUrl = "https://elaborium.site/proxy/stream/default/profile.jpg";
   double imageScale = 1.0;
   Offset imageOffset = const Offset(0, 0);
+  bool visible = true;
+
+  bool cleared = false;
   bool requestedPermission = false;
   bool generalCondition = false;
+  bool payed = false;
   String socketId = "";
   bool notifScheduled = false;
   String notifDay = DateTime(2090).toString();

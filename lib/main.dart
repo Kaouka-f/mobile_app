@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:background_fetch/background_fetch.dart';
 import 'package:flutter/foundation.dart';
 import 'package:intl/date_symbol_data_local.dart';
+import 'package:kaouka/bot.dart';
 import 'package:kaouka/database.dart';
 import 'package:kaouka/utils.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -24,7 +25,7 @@ import '../logging.dart';
 import 'dart:io' show Platform;
 
 SharedData sharedData = SharedData();
-const platform = MethodChannel('com.example.ctj_mobile/channel');
+const platform = MethodChannel('com.elaborium.kaouka/channel');
 
 Future<String?> getToken() async {
   try {
@@ -134,6 +135,7 @@ void backgroundFetchHeadlessTask(HeadlessTask task) async {
 }
 
 Future<void> main() async {
+  const bool selector = bool.fromEnvironment('SELECTOR', defaultValue: false);
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   // FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
@@ -141,13 +143,19 @@ Future<void> main() async {
   LoggerManager.setupLogging();
   await sharedData.init();
   final DatabaseHelper databaseHelper = DatabaseHelper.instance;
+  // databaseHelper.recreateDatabase();
   String id = sharedData.getId;
+  print('id = $id');
   if (id.isEmpty) {
     dynamic id = await databaseHelper.getDbId();
     if (id.isEmpty) {
       dynamic idObj = await retrieveId();
       id = "${idObj['id']}_${idObj['privateId']}";
       await databaseHelper.insertDbId(id);
+      if (selector) {
+        await databaseHelper
+            .insertBot(Bot(id1: idObj['id'], id2: idObj['privateId']));
+      }
     }
     sharedData.setId = encodeId(id);
   }

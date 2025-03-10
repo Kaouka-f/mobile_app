@@ -8,6 +8,7 @@ import 'package:kaouka/database.dart';
 import 'package:kaouka/notifiers/message_notifier.dart';
 import 'package:kaouka/notifiers/visible_notifier.dart';
 import 'package:kaouka/pages/deep_link_request_page.dart';
+import 'package:kaouka/pages/user_menu.dart';
 import 'package:kaouka/person.dart';
 import 'package:kaouka/theme.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -37,7 +38,10 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
+const bool selector = bool.fromEnvironment('SELECTOR', defaultValue: false);
+
 class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
+  bool isMenuOpen = false;
   int _currentIndex = 0;
   final PageController _pageController = PageController(initialPage: 0);
   final TextEditingController _textEditingController = TextEditingController();
@@ -142,6 +146,67 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
     }
   }
 
+  void toggleMenu() {
+    setState(() {
+      isMenuOpen = !isMenuOpen;
+    });
+  }
+
+  bool floatingButtonTop = false;
+  bool floatingButtonLeft = false;
+  void onSwipe(DragEndDetails details) {
+    if (details.primaryVelocity == null) return;
+
+    // Detect swipe direction
+    if (details.primaryVelocity! > 0) {
+      setState(() {
+        // Swiped Right ➡️
+        if (floatingButtonTop) {
+          floatingButtonPos = FloatingActionButtonLocation.endTop;
+        } else {
+          floatingButtonPos = FloatingActionButtonLocation.endFloat;
+        }
+        floatingButtonLeft = false;
+      });
+    } else {
+      // Swiped Left ⬅️
+      setState(() {
+        if (floatingButtonTop) {
+          floatingButtonPos = FloatingActionButtonLocation.centerTop;
+        } else {
+          floatingButtonPos = FloatingActionButtonLocation.centerFloat;
+        }
+        floatingButtonLeft = true;
+      });
+    }
+  }
+
+  void onVerticalSwipe(DragEndDetails details) {
+    if (details.primaryVelocity == null) return;
+
+    if (details.primaryVelocity! > 0) {
+      setState(() {
+        // Swiped Down ⬇️
+        if (floatingButtonLeft) {
+          floatingButtonPos = FloatingActionButtonLocation.centerFloat;
+        } else {
+          floatingButtonPos = FloatingActionButtonLocation.endFloat;
+        }
+        floatingButtonTop = false;
+      });
+    } else {
+      setState(() {
+        // Swiped Up ⬆️
+        if (floatingButtonLeft) {
+          floatingButtonPos = FloatingActionButtonLocation.centerTop;
+        } else {
+          floatingButtonPos = FloatingActionButtonLocation.endTop;
+        }
+        floatingButtonTop = true;
+      });
+    }
+  }
+
   getContactsNotif() async {
     setState(() {
       notifCount = MessageNotifier.instance.messagenb;
@@ -189,6 +254,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
   @override
   void initState() {
     super.initState();
+    print('selector: $selector');
     // initPlatformState();
     MessageNotifier.instance.addListener(getContactsNotif);
     // _connectivitySubscription =
@@ -294,6 +360,8 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
     super.dispose();
   }
 
+  FloatingActionButtonLocation floatingButtonPos =
+      FloatingActionButtonLocation.endFloat;
   bool isWritingPost = false;
   @override
   Widget build(BuildContext context) {
@@ -307,23 +375,41 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
         Provider.of<PersistentImageProvider>(context, listen: false).offset;
     // PersistentModeProvider modeProvider =
     //     Provider.of<PersistentModeProvider>(context, listen: false);
-    const bool showHiddenPage = bool.fromEnvironment('SHOW_HIDDEN_PAGE');
     return Scaffold(
       body: !lostConnection
-          ? PageView(
-              controller: _pageController,
-              onPageChanged: (index) {
-                setState(() {
-                  if (index >= 2) {
-                    _currentIndex = index + 1;
-                  } else {
-                    _currentIndex = index;
-                  }
-                });
-              },
-              children: _pages,
-            )
+          ? Stack(children: [
+              PageView(
+                controller: _pageController,
+                onPageChanged: (index) {
+                  setState(() {
+                    if (index >= 2) {
+                      _currentIndex = index + 1;
+                    } else {
+                      _currentIndex = index;
+                    }
+                  });
+                },
+                children: _pages,
+              ),
+              isMenuOpen
+                  ? UserMenu(
+                      toggleMenu: toggleMenu,
+                    )
+                  : Container()
+            ])
           : const LostConnectionPage(),
+      floatingActionButton: selector
+          ? GestureDetector(
+              onHorizontalDragEnd: onSwipe,
+              onVerticalDragEnd: onVerticalSwipe,
+              child: FloatingActionButton(
+                onPressed: toggleMenu,
+                child: Icon(isMenuOpen ? Icons.close : Icons.menu),
+              ),
+            )
+          : Container(),
+      floatingActionButtonLocation: floatingButtonPos,
+      floatingActionButtonAnimator: FloatingActionButtonAnimator.noAnimation,
       bottomSheet: isWritingPost
           ? InputBar(
               onSubmitted: _submit,

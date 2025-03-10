@@ -3,11 +3,17 @@ import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import '../logging.dart';
+import 'shared_data.dart';
+import 'dart:io';
+import 'package:kaouka/bot.dart';
+
+const selector = bool.fromEnvironment('SELECTOR');
 
 class DatabaseHelper {
   static final DatabaseHelper instance = DatabaseHelper._();
 
   static Database? _database;
+  static Database? _commonDatabase;
 
   DatabaseHelper._();
 
@@ -17,10 +23,60 @@ class DatabaseHelper {
     return _database!;
   }
 
+  Future<Database> get commonDatabase async {
+    if (_commonDatabase != null) return _commonDatabase!;
+    _commonDatabase = await _initCommonDatabase();
+    return _commonDatabase!;
+  }
+
   Future<Database> _initDatabase() async {
+    SharedData sharedData = SharedData();
+    String id = sharedData.getId;
     final dbPath = await getDatabasesPath();
-    final path = join(dbPath, 'ctj.db');
+    final oldPath = join(dbPath, 'ctj.db');
+    final path = join(dbPath, '${id}_ctj.db');
+
+    bool exists = await databaseExists(oldPath);
+    if (exists) {
+      await File(oldPath).rename(path);
+    }
     return await openDatabase(path, version: 1, onCreate: _createDatabase);
+  }
+
+  Future<Database> _initCommonDatabase() async {
+    final dbPath = await getDatabasesPath();
+    final path = join(dbPath, 'common_ctj.db');
+    return await openDatabase(path,
+        version: 1, onCreate: _createCommanDatabase);
+  }
+
+  Future<void> recreateDatabase() async {
+    SharedData sharedData = SharedData();
+    String id = sharedData.getId;
+    final dbPath = await getDatabasesPath();
+    final oldPath = join(dbPath, 'ctj.db');
+    final path = join(dbPath, '${id}_ctj.db');
+
+    bool existsOld = await databaseExists(oldPath);
+    if (existsOld) {
+      await deleteDatabase(oldPath);
+    }
+    bool exists = await databaseExists(path);
+    if (exists) {
+      await deleteDatabase(path);
+    }
+    _initDatabase();
+    _initCommonDatabase();
+  }
+
+  Future<void> _createCommanDatabase(Database db, int version) async {
+    await db.execute('''
+      CREATE TABLE bots(
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        id1 TEXT,
+        id2 TEXT
+      )
+    ''');
   }
 
   Future<void> _createDatabase(Database db, int version) async {
@@ -49,10 +105,35 @@ class DatabaseHelper {
     ''');
   }
 
+  Future<void> insertBot(Bot bot) async {
+    await checkDb();
+    final db = await commonDatabase;
+    await db.insert('bots', {
+      'id1': bot.id1,
+      'id2': bot.id2,
+    });
+  }
+
+  Future<List<Bot>> getBots() async {
+    await checkDb();
+    final db = await commonDatabase;
+    try {
+      final List<Map<String, dynamic>> tmpBots = await db.query('bots');
+      return tmpBots.map((map) => Bot.fromMap(map)).toList();
+    } catch (e) {
+      LoggerManager.logError('DB: get bots error: ', e);
+    }
+    return [];
+  }
+
   Future<void> checkDb() async {
     final db = await database;
     if (!db.isOpen) {
       _database = await _initDatabase();
+    }
+    final commondb = await commonDatabase;
+    if (!commondb.isOpen) {
+      _commonDatabase = await _initCommonDatabase();
     }
   }
 
