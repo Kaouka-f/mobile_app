@@ -5,13 +5,31 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "selector mode",
+            "name": "test selector",
             "request": "launch",
             "type": "dart",
             "noDebug": true,
             "args": [
                 "--dart-define=MODE=TEST",
                 "--dart-define=SELECTOR=true"
+            ]
+        },
+        {
+            "name": "prod selector",
+            "request": "launch",
+            "type": "dart",
+            "noDebug": true,
+            "args": [
+                "--dart-define=SELECTOR=true"
+            ]
+        },
+        {
+            "name": "test",
+            "request": "launch",
+            "type": "dart",
+            "noDebug": true,
+            "args": [
+                "--dart-define=MODE=TEST",
             ]
         },
         {

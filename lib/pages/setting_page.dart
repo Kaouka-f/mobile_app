@@ -65,6 +65,7 @@ class _SettingPageState extends State<SettingPage> {
   }
 
   void _submit() async {
+    print(imageUrl);
     hintText != shared.name ? shared.setName = hintText : "undefined";
     if (imageUrl != shared.imageUrl) shared.setImageUrl = imageUrl;
     imageScale != shared.imageScale ? shared.setImageScale = imageScale : null;

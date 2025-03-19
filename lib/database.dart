@@ -1,3 +1,5 @@
+import 'package:kaouka/utils.dart';
+
 import 'message.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
@@ -112,6 +114,17 @@ class DatabaseHelper {
       'id1': bot.id1,
       'id2': bot.id2,
     });
+  }
+
+  Future<void> deleteBot(String id) async {
+    await checkDb();
+    final db = await commonDatabase;
+    await db.delete(
+      'messages',
+      where:
+          'id1 = ?', // Replace 'timestamp' with your unique identifier column if needed
+      whereArgs: [id],
+    );
   }
 
   Future<List<Bot>> getBots() async {
@@ -396,12 +409,18 @@ class DatabaseHelper {
     try {
       await checkDb();
       final db = await database;
-      if (await databaseExists('ctj.db')) {
+      SharedData sharedData = SharedData();
+      String id = sharedData.getId;
+      if (await databaseExists('${id}_ctj.db')) {
         await db.delete('messages');
         await db.delete('contacts');
         await db.delete('mydata');
         await db.close();
-        await databaseFactory.deleteDatabase('ctj.db');
+        await databaseFactory.deleteDatabase('${id}_ctj.db');
+      }
+      if (selector) {
+        final id1 = decodeId1(id);
+        await deleteBot(id1);
       }
 
       // Clear the cache
