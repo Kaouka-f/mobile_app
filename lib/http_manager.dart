@@ -15,7 +15,7 @@ import 'utils.dart';
 
 const mode = String.fromEnvironment('MODE');
 
-String host = mode == "TEST" ? "192.168.1.49" : "elaborium.site";
+String host = mode == "TEST" ? "192.168.1.100" : "elaborium.site";
 int port = 443;
 bool secure = true;
 

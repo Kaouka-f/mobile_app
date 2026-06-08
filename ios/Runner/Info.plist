@@ -40,13 +40,13 @@
 	<key>NSAudioUsesDescription</key>
 	<string>Vous devez accéder à la caméra et l&apos;audio pour poster des vidéos</string>
 	<key>NSCameraUsageDescription</key>
-	<string>Kaouka à besoin d'utiliser la caméra pour vous permettre de poster des photos ou des vidéos</string>
+	<string>Kaouka à besoin d&apos;utiliser la caméra pour vous permettre de poster des photos ou des vidéos</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>Vous devez accéder à la localisation pour voir les posts autour de vous, sinon l&apos;app vous sera inutile</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Vous devez accéder à la localisation pour voir les posts autour de vous, sinon l&apos;app vous sera inutile</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>Kaouka à besoin d'utiliser la caméra pour vous permettre de poster des audios ou vidéos</string>
+	<string>Kaouka à besoin d&apos;utiliser la caméra pour vous permettre de poster des audios ou vidéos</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Vous devez accéder aux images pour poster des photos/vidéos ou ajouter dans votre photo de profile</string>
 	<key>RequestsOpenAccess</key>
@@ -55,9 +55,10 @@
 	<true/>
 	<key>NSUserNotificationUsageDescription</key>
 	<string>This app requires push notifications to keep you updated.</string>
+	<key>CFBundleGetInfoString</key>
+	<string></string>
 	<key>UIBackgroundModes</key>
 	<array>
-		<!-- <string>location</string> -->
 		<string>fetch</string>
 		<string>processing</string>
 		<string>remote-notification</string>
