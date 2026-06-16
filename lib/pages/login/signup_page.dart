@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import '../components/custom_elevated_button.dart';
-import '../components/custom_text_field.dart';
-import '../http_manager.dart';
-import '../shared_data.dart';
-import 'home_page.dart';
+import '../../components/custom_elevated_button.dart';
+import '../../components/custom_text_field.dart';
+import '../../http_manager.dart';
+import '../../shared_data.dart';
+import '../home_page.dart';
 
 class SignupPage extends StatelessWidget {
   const SignupPage({super.key});
@@ -29,6 +29,7 @@ class SignupPage extends StatelessWidget {
                 email = value;
               },
             ),
+            const SizedBox(height: 16.0),
             CustomTextField(
               maxLength: 100,
               maxLines: 1,
@@ -37,6 +38,7 @@ class SignupPage extends StatelessWidget {
                 password = value;
               },
             ),
+            const SizedBox(height: 16.0),
             CustomElevatedButton(
               text: "S'inscrire",
               onPressed: () async {

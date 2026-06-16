@@ -40,22 +40,18 @@ class _CustomElevatedButtonState extends State<CustomElevatedButton> {
         });
       },
       onTap: widget.onPressed,
-      child: Container(
-        decoration: BoxDecoration(
-          color: _isPressed ? Colors.white : Colors.black,
-          borderRadius: BorderRadius.circular(40),
-          boxShadow: const [
-            BoxShadow(
-              color: Color.fromARGB(255, 192, 192, 192),
-              offset: Offset(0, 0),
-              blurRadius: 20,
-            ),
-          ],
-        ),
+      child: SizedBox(
+        width: double.infinity,
+        height: 52,
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
-              shadowColor: Colors.transparent,
-              backgroundColor: Colors.transparent),
+            shadowColor: Colors.transparent,
+            foregroundColor: Colors.white,
+            backgroundColor: Colors.black,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12),
+            ),
+          ),
           onPressed: widget.onPressed,
           child: Text(
             widget.text,

@@ -355,7 +355,10 @@ class DatabaseHelper {
     try {
       final List<Map<String, dynamic>> result = await db.query('mydata');
       if (result.isNotEmpty) {
-        return result[0]['personid'] as String;
+        return result[0]['jwt'] as String;
+      } else {
+        LoggerManager.logInfo('DB: no jwt found in database');
+        return '';
       }
     } catch (e) {
       LoggerManager.logError('DB: retrieveId error: ', e);

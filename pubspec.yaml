@@ -74,6 +74,9 @@ dependencies:
   flutter_linkify: ^6.0.0
   # flutter_app_badger: ^1.5.0
   flutter_app_badge_control: ^0.0.2
+  sign_in_with_apple: ^6.1.0
+  google_sign_in: ^6.2.0
+  font_awesome_flutter: ^10.7.0
 
 dev_dependencies:
   flutter_test:

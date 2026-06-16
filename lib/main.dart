@@ -5,6 +5,8 @@ import 'package:flutter/foundation.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:kaouka/bot.dart';
 import 'package:kaouka/database.dart';
+import 'package:kaouka/pages/login/connect.dart';
+import 'package:kaouka/pages/login/login_page.dart';
 import 'package:kaouka/utils.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'notifiers/mode_notifier.dart';
@@ -26,7 +28,7 @@ import 'dart:io' show Platform;
 
 SharedData sharedData = SharedData();
 const platform = MethodChannel('com.elaborium.kaouka/channel');
-
+String jwt = "";
 Future<String?> getToken() async {
   try {
     SharedData sharedData = SharedData();
@@ -143,22 +145,8 @@ Future<void> main() async {
   LoggerManager.setupLogging();
   await sharedData.init();
   final DatabaseHelper databaseHelper = DatabaseHelper.instance;
+  jwt = await databaseHelper.getDbId();
   // databaseHelper.recreateDatabase();
-  String id = sharedData.getId;
-  print('id = $id');
-  if (id.isEmpty) {
-    dynamic id = await databaseHelper.getDbId();
-    if (id.isEmpty) {
-      dynamic idObj = await retrieveId();
-      id = "${idObj['id']}_${idObj['privateId']}";
-      await databaseHelper.insertDbId(id);
-      if (selector) {
-        await databaseHelper
-            .insertBot(Bot(id1: idObj['id'], id2: idObj['privateId']));
-      }
-    }
-    sharedData.setId = encodeId(id);
-  }
   if (Platform.isAndroid) {
     _registerMethodChannel();
     _invokeNativeMethod();
@@ -210,7 +198,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: darkMode.isModeChanged ? lightStyle : darkStyle,
-      home: const HomePage(),
+      // home: const HomePage(),
+      home: jwt.isNotEmpty ? const HomePage() : const ConnectPage(),
     );
   }
 }
