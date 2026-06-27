@@ -23,10 +23,12 @@ class ConnectPage extends StatelessWidget {
 
     void _signInWithGoogle() {
       // TODO: GoogleSignIn().signIn();
+      print("Google Sign-In not implemented yet");
     }
 
     void _signInWithApple() {
       // TODO: SignInWithApple.getAppleIDCredential(...)
+      print("Apple Sign-In not implemented yet");
     }
 
     return Scaffold(

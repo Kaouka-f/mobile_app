@@ -42,11 +42,10 @@ class SignupPage extends StatelessWidget {
             CustomElevatedButton(
               text: "S'inscrire",
               onPressed: () async {
-                SharedData shared = SharedData();
-                String id = shared.getId;
                 bool res = true;
+                print("signup with email: $email and password: $password");
                 if (email.isNotEmpty && password.isNotEmpty) {
-                  res = await signUp(id, password, email);
+                  res = await signUp(password, email);
                 }
                 if (!res) {
                   // ignore: use_build_context_synchronously

@@ -15,14 +15,14 @@ import 'utils.dart';
 
 const mode = String.fromEnvironment('MODE');
 
-String host = mode == "TEST" ? "192.168.1.100" : "elaborium.site";
-int port = 443;
-bool secure = true;
+// String host = mode == "TEST" ? "192.168.1.100" : "elaborium.site";
+// int port = 443;
+// bool secure = true;
 
 // comment this line in production
-// String host = '192.168.1.49';
-// int port = 80;
-// bool secure = false;
+String host = '192.168.1.14';
+int port = 8000;
+bool secure = false;
 
 enum RequestType { get, post }
 
@@ -329,8 +329,8 @@ Future<bool> isPayed(String id) async {
   return true;
 }
 
-Future<bool> connect(String id) async {
-  Map<String, dynamic> data = {'id': id};
+Future<bool> connect(String pseudo, String password) async {
+  Map<String, dynamic> data = {'email': pseudo, 'password': password};
   final res = await post(data, "connect");
   print(res);
   if (res["connection"] == 'sucess') {
@@ -339,12 +339,13 @@ Future<bool> connect(String id) async {
   return true;
 }
 
-Future<bool> signUp(String id, String password, String email) async {
-  Map<String, dynamic> data = {'id': id, 'password': password, 'email': email};
-  final res = await get(data, "signUp");
-  if (res.toString() == 'signed') {
-    return false;
-  }
+Future<bool> signUp(String password, String email) async {
+  Map<String, dynamic> data = {'password': password, 'email': email};
+  final res = await post(data, "signUp");
+  print(res);
+  // if (res.toString() == 'signed') {
+  //   return false;
+  // }
   return true;
 }
 

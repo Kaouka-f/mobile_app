@@ -58,8 +58,10 @@ class LoginPage extends StatelessWidget {
                   SharedData shared = SharedData();
                   LoggerManager.logInfo(pseudo);
                   LoggerManager.logInfo(password);
+                  print("pseudo: $pseudo");
+                  print("password: $password");
                   // TODO : ajouter password dans connect
-                  res = await connect(pseudo);
+                  res = await connect(pseudo, password);
                   if (!res) {
                     // TODO: get jwt from API
                     // String jwt = "${pseudo}_$password";
