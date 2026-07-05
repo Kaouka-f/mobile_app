@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../person.dart';
+import '../models/person.dart';
 
 class PeopleNotifier extends ChangeNotifier {
   List<ReqPerson> _people = [];

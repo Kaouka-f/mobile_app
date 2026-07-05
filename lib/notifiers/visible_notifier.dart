@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../shared_data.dart';
+import '../core/shared_data.dart';
 
 class PersistentVisibleProvider extends ChangeNotifier {
   late bool _isVisibleChanged;

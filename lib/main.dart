@@ -3,8 +3,8 @@ import 'dart:convert';
 import 'package:background_fetch/background_fetch.dart';
 import 'package:flutter/foundation.dart';
 import 'package:intl/date_symbol_data_local.dart';
-import 'package:kaouka/bot.dart';
-import 'package:kaouka/database.dart';
+import 'package:kaouka/models/bot.dart';
+import 'package:kaouka/core/database.dart';
 import 'package:kaouka/pages/login/connect.dart';
 import 'package:kaouka/pages/login/login_page.dart';
 import 'package:kaouka/utils.dart';
@@ -12,7 +12,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'notifiers/mode_notifier.dart';
 import 'notifiers/person_notifier.dart';
 import 'notifiers/visible_notifier.dart';
-import 'shared_data.dart';
+import 'core/shared_data.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -20,10 +20,10 @@ import 'package:provider/provider.dart';
 import 'notifiers/image_notifier.dart';
 import 'notifiers/message_notifier.dart';
 import 'pages/home_page.dart';
-import 'http_manager.dart';
 import 'theme.dart';
 import 'package:firebase_core/firebase_core.dart';
-import '../logging.dart';
+import 'core/logging.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'dart:io' show Platform;
 
 SharedData sharedData = SharedData();
@@ -145,7 +145,11 @@ Future<void> main() async {
   LoggerManager.setupLogging();
   await sharedData.init();
   final DatabaseHelper databaseHelper = DatabaseHelper.instance;
-  jwt = await databaseHelper.getDbId();
+
+  // JWT
+  final storage = FlutterSecureStorage();
+  jwt = await storage.read(key: 'persistent_token') ?? '';
+
   // databaseHelper.recreateDatabase();
   if (Platform.isAndroid) {
     _registerMethodChannel();

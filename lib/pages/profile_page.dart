@@ -3,15 +3,19 @@ import 'package:kaouka/components/custom_elevated_button.dart';
 import 'package:kaouka/components/kavatar.dart';
 import 'package:kaouka/components/req_person_list.dart';
 import 'package:kaouka/components/selector_button.dart';
-import 'package:kaouka/database.dart';
-import 'package:kaouka/http_manager.dart';
-import 'package:kaouka/logging.dart';
+import 'package:kaouka/core/database.dart';
+
+import 'package:kaouka/core/logging.dart';
+import 'package:kaouka/http/routes/get/get_interressed.dart';
+import 'package:kaouka/http/routes/get/get_own_reqs.dart';
+import 'package:kaouka/http/routes/post/delete_interressed.dart';
+import 'package:kaouka/http/routes/post/delete_req.dart';
 import 'package:kaouka/pages/setting_page.dart';
-import 'package:kaouka/person.dart';
+import 'package:kaouka/models/person.dart';
 import '../notifiers/visible_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../shared_data.dart';
+import '../core/shared_data.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});

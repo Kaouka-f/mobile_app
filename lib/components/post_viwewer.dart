@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:kaouka/components/audio_player.dart';
 import 'package:kaouka/components/photo_viewer.dart';
 import 'package:kaouka/components/video_player.dart';
-import 'package:kaouka/database.dart';
+import 'package:kaouka/core/database.dart';
 import 'package:kaouka/utils.dart';
 
 // ignore: must_be_immutable

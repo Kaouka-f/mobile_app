@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:kaouka/database.dart';
+import 'package:kaouka/core/database.dart';
 import 'package:video_player/video_player.dart' as vp;
 
 // ignore: must_be_immutable

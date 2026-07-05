@@ -1,6 +1,8 @@
 import 'dart:io';
 import 'package:kaouka/components/input_bar.dart';
-import 'package:kaouka/http_manager.dart';
+import 'package:kaouka/http/routes/get/get_infos.dart';
+import 'package:kaouka/http/routes/post/send_msg.dart';
+
 import 'package:kaouka/notifiers/message_notifier.dart';
 import 'package:kaouka/utils.dart';
 import '/notifiers/mode_notifier.dart';
@@ -8,10 +10,10 @@ import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import '../components/chat_bubble.dart';
 import '../components/kavatar.dart';
-import '../database.dart';
-import '../message.dart';
+import '../core/database.dart';
+import '../models/message.dart';
 import '../theme.dart';
-import '../shared_data.dart';
+import '../core/shared_data.dart';
 import 'package:flutter_app_badge_control/flutter_app_badge_control.dart';
 
 class ChatPage extends StatefulWidget {

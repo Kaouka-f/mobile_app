@@ -7,7 +7,7 @@ import '../components/custom_toggle_button.dart';
 import '../notifiers/visible_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../shared_data.dart';
+import '../core/shared_data.dart';
 
 class SettingPage extends StatefulWidget {
   final Function changed;

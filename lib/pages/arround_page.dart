@@ -1,14 +1,16 @@
 import 'dart:async';
 import 'package:flutter/foundation.dart';
+import 'package:kaouka/http/routes/get/get_arrounds.dart';
+import 'package:kaouka/http/routes/post/post_location.dart';
 import 'package:permission_handler/permission_handler.dart';
-import '../http_manager.dart';
+
 import '../notifiers/message_notifier.dart';
-import '../shared_data.dart';
+import '../core/shared_data.dart';
 import '../utils.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import '../components/req_person_list.dart';
-import '../person.dart';
+import '../models/person.dart';
 
 class ArroundPage extends StatefulWidget {
   const ArroundPage({super.key});

@@ -1,16 +1,15 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:kaouka/database.dart';
+import 'package:kaouka/core/database.dart';
 import 'package:kaouka/pages/login/login_page.dart';
 import 'package:kaouka/pages/login/signup_page.dart';
 import 'package:kaouka/utils.dart';
 import '../../components/custom_elevated_button.dart';
 import '../../components/custom_text_field.dart';
-import '../../http_manager.dart';
-import '../../shared_data.dart';
+import '../../core/shared_data.dart';
 import '../home_page.dart';
-import '../../logging.dart';
+import '../../core/logging.dart';
 
 class ConnectPage extends StatelessWidget {
   const ConnectPage({super.key});

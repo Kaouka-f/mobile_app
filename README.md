@@ -162,7 +162,7 @@ Les requêtes HTTPS utilisent un `SecurityContext` personnalisé (certificat `as
 ### Exemple d'appel
 
 ```dart
-import 'package:kaouka/http_manager.dart';
+
 
 // Récupérer les personnes autour de moi
 final people = await getArrounds(userId, longitude, latitude);

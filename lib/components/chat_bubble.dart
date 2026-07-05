@@ -1,12 +1,13 @@
 import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:kaouka/components/post_viwewer.dart';
-import 'package:kaouka/database.dart';
-import 'package:kaouka/http_manager.dart';
-import 'package:kaouka/shared_data.dart';
+import 'package:kaouka/core/database.dart';
+
+import 'package:kaouka/core/shared_data.dart';
+import 'package:kaouka/http/routes/post/delete_msg.dart';
 import 'package:kaouka/utils.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../message.dart';
+import '../models/message.dart';
 import 'package:flutter/material.dart';
 import '../theme.dart';
 

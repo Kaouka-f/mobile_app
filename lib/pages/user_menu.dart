@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:kaouka/components/kavatar.dart';
-import 'package:kaouka/person.dart';
-import 'package:kaouka/shared_data.dart';
-import 'package:kaouka/bot.dart';
-import 'package:kaouka/database.dart';
-import 'package:kaouka/http_manager.dart';
+import 'package:kaouka/http/routes/get/get_infos.dart';
+import 'package:kaouka/http/routes/get/retrieve_id.dart';
+import 'package:kaouka/models/person.dart';
+import 'package:kaouka/core/shared_data.dart';
+import 'package:kaouka/models/bot.dart';
+import 'package:kaouka/core/database.dart';
+
 import 'package:kaouka/utils.dart';
 import 'package:restart_app/restart_app.dart';
 

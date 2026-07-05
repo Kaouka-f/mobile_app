@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_echo/flutter_echo.dart';
 import 'package:just_audio/just_audio.dart' as just;
-import 'package:kaouka/database.dart';
+import 'package:kaouka/core/database.dart';
 import 'package:rxdart/rxdart.dart';
 
 // ignore: must_be_immutable

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../shared_data.dart';
+import '../core/shared_data.dart';
 
 class PersistentImageProvider extends ChangeNotifier {
   String _isImageChanged = "";

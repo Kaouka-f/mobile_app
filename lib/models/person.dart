@@ -1,4 +1,4 @@
-import 'package:kaouka/request.dart';
+import 'package:kaouka/models/request.dart';
 
 class ReqPerson {
   final Person person;

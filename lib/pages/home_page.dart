@@ -4,12 +4,17 @@ import 'package:app_links/app_links.dart';
 import 'package:background_fetch/background_fetch.dart';
 import 'package:kaouka/components/badge_icon.dart';
 import 'package:kaouka/components/input_bar.dart';
-import 'package:kaouka/database.dart';
+import 'package:kaouka/core/database.dart';
+import 'package:kaouka/http/routes/get/get_request.dart';
+import 'package:kaouka/http/routes/post/on_connection.dart';
+import 'package:kaouka/http/routes/post/on_disconnection.dart';
+import 'package:kaouka/http/routes/post/post_location.dart';
+import 'package:kaouka/http/routes/post/post_request.dart';
 import 'package:kaouka/notifiers/message_notifier.dart';
 import 'package:kaouka/notifiers/visible_notifier.dart';
 import 'package:kaouka/pages/deep_link_request_page.dart';
 import 'package:kaouka/pages/user_menu.dart';
-import 'package:kaouka/person.dart';
+import 'package:kaouka/models/person.dart';
 import 'package:kaouka/theme.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 // import '../notifiers/mode_notifier.dart';
@@ -17,18 +22,18 @@ import '../components/cgu_.dart';
 import 'lost_connection_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../notifications.dart';
+import '../core/notifications.dart';
 import '../notifiers/image_notifier.dart';
-import '../shared_data.dart';
+import '../core/shared_data.dart';
 import '../utils.dart';
 import 'arround_page.dart';
 import 'profile_page.dart';
 import 'extra_page.dart';
 import 'contact_page.dart';
 import 'dart:async';
-import '../http_manager.dart';
+
 import 'package:connectivity_plus/connectivity_plus.dart';
-import '../logging.dart';
+import '../core/logging.dart';
 
 enum AppState { connected, disconnected }
 

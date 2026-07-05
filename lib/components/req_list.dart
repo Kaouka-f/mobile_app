@@ -4,7 +4,7 @@ import 'package:kaouka/pages/request_info_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../notifiers/person_notifier.dart';
-import '../person.dart';
+import '../models/person.dart';
 import 'kavatar.dart';
 
 class ReqPersonList extends StatefulWidget {

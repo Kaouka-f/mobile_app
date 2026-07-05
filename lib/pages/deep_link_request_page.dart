@@ -3,13 +3,15 @@ import 'package:kaouka/components/post_viwewer.dart';
 import 'package:kaouka/components/request_card.dart';
 import 'package:flutter/material.dart';
 import 'package:kaouka/components/selector_button.dart';
+import 'package:kaouka/http/routes/get/get_all_reqs.dart';
+import 'package:kaouka/http/routes/get/get_comments.dart';
 import 'package:kaouka/pages/request_info_page.dart';
 import '../components/kavatar.dart';
-import '../database.dart';
-import '../http_manager.dart';
-import '../message.dart';
-import '../person.dart';
-import '../shared_data.dart';
+import '../core/database.dart';
+
+import '../models/message.dart';
+import '../models/person.dart';
+import '../core/shared_data.dart';
 import '../utils.dart';
 
 class DeepLinkHandler extends StatefulWidget {

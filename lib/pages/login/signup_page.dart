@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:kaouka/http/routes/get/sign_up.dart';
 import '../../components/custom_elevated_button.dart';
 import '../../components/custom_text_field.dart';
-import '../../http_manager.dart';
-import '../../shared_data.dart';
+import '../../core/shared_data.dart';
 import '../home_page.dart';
 
 class SignupPage extends StatelessWidget {

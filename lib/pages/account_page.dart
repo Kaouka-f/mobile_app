@@ -1,10 +1,12 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:kaouka/components/custom_elevated_button.dart';
-import 'package:kaouka/database.dart';
-import 'package:kaouka/http_manager.dart';
+import 'package:kaouka/core/database.dart';
+import 'package:kaouka/http/routes/get/retrieve_id.dart';
+import 'package:kaouka/http/routes/post/delete_acnt.dart';
+
 import 'package:kaouka/pages/login/login_page.dart';
-import 'package:kaouka/shared_data.dart';
+import 'package:kaouka/core/shared_data.dart';
 import 'package:kaouka/utils.dart';
 import 'package:restart_app/restart_app.dart';
 

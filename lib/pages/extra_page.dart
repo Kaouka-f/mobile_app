@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 // import 'package:kaouka/components/post_viwewer.dart';
-import 'package:kaouka/http_manager.dart';
-import 'package:kaouka/shared_data.dart';
+
+import 'package:kaouka/core/shared_data.dart';
+import 'package:kaouka/http/routes/get/get_feed.dart';
 
 class ExtraPage extends StatefulWidget {
   const ExtraPage({super.key});

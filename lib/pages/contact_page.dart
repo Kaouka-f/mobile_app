@@ -1,11 +1,14 @@
 import 'package:kaouka/components/kavatar.dart';
-import 'package:kaouka/contact.dart';
-import 'package:kaouka/http_manager.dart';
+import 'package:kaouka/http/routes/get/get_infos.dart';
+import 'package:kaouka/http/routes/post/blocked_user.dart';
+import 'package:kaouka/http/routes/post/is_blocked.dart';
+import 'package:kaouka/models/contact.dart';
+
 import 'package:kaouka/notifiers/message_notifier.dart';
 import 'package:kaouka/pages/chat_page.dart';
 import 'package:flutter/material.dart';
-import 'package:kaouka/shared_data.dart';
-import '../database.dart';
+import 'package:kaouka/core/shared_data.dart';
+import '../core/database.dart';
 import '../utils.dart';
 
 class ContactPage extends StatefulWidget {

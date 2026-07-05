@@ -5,12 +5,16 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:kaouka/components/input_bar.dart';
-import 'package:kaouka/database.dart';
-import 'package:kaouka/http_manager.dart';
+import 'package:kaouka/core/database.dart';
+import 'package:kaouka/http/routes/get/get_likes.dart';
+import 'package:kaouka/http/routes/post/like_req.dart';
+import 'package:kaouka/http/routes/post/post_comments.dart';
+import 'package:kaouka/http/routes/post/signal_req.dart';
+
 import 'package:kaouka/pages/chat_page.dart';
-import 'package:kaouka/person.dart';
-import 'package:kaouka/request.dart';
-import 'package:kaouka/shared_data.dart';
+import 'package:kaouka/models/person.dart';
+import 'package:kaouka/models/request.dart';
+import 'package:kaouka/core/shared_data.dart';
 import 'package:kaouka/utils.dart';
 
 class TileBottomBar extends StatefulWidget {

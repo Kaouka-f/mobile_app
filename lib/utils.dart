@@ -8,8 +8,10 @@ import 'package:image_picker/image_picker.dart';
 // import '../logging.dart';
 import 'package:intl/intl.dart';
 import 'package:kaouka/components/custom_elevated_button.dart';
-import 'package:kaouka/http_manager.dart';
-import 'package:kaouka/shared_data.dart';
+
+import 'package:kaouka/core/shared_data.dart';
+import 'package:kaouka/http/routes/get/get_msgs.dart';
+import 'package:kaouka/http/routes/post/delete_msgs.dart';
 
 Future<Position?> getCurrentLocation() async {
   try {

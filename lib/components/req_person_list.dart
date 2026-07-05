@@ -1,10 +1,11 @@
 import 'package:kaouka/components/post_viwewer.dart';
 import 'package:kaouka/components/tile_bottom_bar.dart';
-import 'package:kaouka/http_manager.dart';
+import 'package:kaouka/http/routes/post/delete_req.dart';
+
 import 'package:kaouka/pages/request_info_page.dart';
 import 'package:flutter/material.dart';
-import '../person.dart';
-import '../shared_data.dart';
+import '../models/person.dart';
+import '../core/shared_data.dart';
 import '../utils.dart';
 import 'kavatar.dart';
 

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../message.dart';
+import '../models/message.dart';
 
 class MessageNotifier extends ChangeNotifier {
   MessageNotifier._internal();

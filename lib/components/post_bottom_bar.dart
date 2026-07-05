@@ -2,10 +2,14 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:kaouka/components/input_bar.dart';
-import 'package:kaouka/database.dart';
-import 'package:kaouka/http_manager.dart';
+import 'package:kaouka/core/database.dart';
+import 'package:kaouka/http/routes/get/get_likes.dart';
+import 'package:kaouka/http/routes/post/delete_req.dart';
+import 'package:kaouka/http/routes/post/like_req.dart';
+import 'package:kaouka/http/routes/post/post_comments.dart';
+
 import 'package:kaouka/pages/chat_page.dart';
-import 'package:kaouka/shared_data.dart';
+import 'package:kaouka/core/shared_data.dart';
 
 class PostBottomBar extends StatefulWidget {
   final String reqId;

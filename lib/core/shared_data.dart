@@ -1,7 +1,11 @@
-import 'http_manager.dart' as http;
 import 'package:flutter/material.dart';
+import 'package:kaouka/http/routes/post/post_name.dart';
+import 'package:kaouka/http/routes/post/post_notif_token.dart';
+import 'package:kaouka/http/routes/post/visible.dart' as postVisible;
+import 'package:kaouka/http/routes/post/post_pp.dart';
+import 'package:kaouka/http/routes/post/post_pp_setting.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../logging.dart';
+import 'logging.dart';
 
 class SharedData {
   SharedData._();
@@ -91,12 +95,12 @@ class SharedData {
   }
 
   dataChanged() async {
-    // await http.postInfos(id, name, imageUrl, imageScale, imageOffset.dx,
+    // await postInfos(id, name, imageUrl, imageScale, imageOffset.dx,
     //     imageOffset.dy, socketId, notifToken);
   }
 
   visibleChanged() async {
-    await http.visible(id, visible.toString());
+    await postVisible.visible(id, visible.toString());
   }
 
   // Getter and Setter for 'id'
@@ -111,7 +115,7 @@ class SharedData {
   set setName(String value) {
     name = value.isEmpty ? "undefined" : value;
     _prefs?.setString('name', value);
-    http.postName(id, name);
+    postName(id, name);
   }
 
   // Getter and Setter for 'visible'
@@ -133,7 +137,7 @@ class SharedData {
   // Getter and Setter for 'imageUrl'
   String get getImageUrl => imageUrl;
   set setImageUrl(String value) {
-    http.postPP(id, value).then((value) => {
+    postPP(id, value).then((value) => {
           if (value != "unset")
             {_prefs?.setString('imageUrl', value), imageUrl = value}
         });
@@ -144,7 +148,7 @@ class SharedData {
   set setImageScale(double value) {
     imageScale = value;
     _prefs?.setDouble('imageScale', value);
-    http.postPPSetting(id, imageScale, imageOffset.dx, imageOffset.dy);
+    postPPSetting(id, imageScale, imageOffset.dx, imageOffset.dy);
   }
 
   // Getter and Setter for 'imageOffset'
@@ -153,7 +157,7 @@ class SharedData {
     imageOffset = value;
     _prefs?.setDouble('imageOffsetX', value.dx);
     _prefs?.setDouble('imageOffsetY', value.dy);
-    http.postPPSetting(id, imageScale, imageOffset.dx, imageOffset.dy);
+    postPPSetting(id, imageScale, imageOffset.dx, imageOffset.dy);
   }
 
   bool get getRequestedPermission => requestedPermission;
@@ -174,7 +178,7 @@ class SharedData {
 
   set setNotifToken(String value) {
     notifToken = value;
-    http.postNotifToken(id, notifToken);
+    postNotifToken(id, notifToken);
   }
 
   bool get getNotifyScheduled => notifScheduled;

@@ -3,8 +3,8 @@ import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:kaouka/components/kavatar.dart';
 import 'package:kaouka/components/post_viwewer.dart';
 import 'package:kaouka/components/tile_bottom_bar.dart';
-import 'package:kaouka/person.dart';
-import 'package:kaouka/request.dart';
+import 'package:kaouka/models/person.dart';
+import 'package:kaouka/models/request.dart';
 import 'package:kaouka/utils.dart';
 import 'package:url_launcher/url_launcher.dart';
 

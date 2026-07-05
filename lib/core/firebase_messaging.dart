@@ -1,7 +1,7 @@
-import 'notifiers/message_notifier.dart';
+import '../notifiers/message_notifier.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-import '../logging.dart';
-import '../shared_data.dart';
+import 'logging.dart';
+import 'shared_data.dart';
 
 class FirebaseMessagingService {
   final FirebaseMessaging firebaseMessaging = FirebaseMessaging.instance;

@@ -1,13 +1,13 @@
 import 'package:kaouka/utils.dart';
 
-import 'message.dart';
+import '../models/message.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
-import '../logging.dart';
+import 'logging.dart';
 import 'shared_data.dart';
 import 'dart:io';
-import 'package:kaouka/bot.dart';
+import 'package:kaouka/models/bot.dart';
 
 const selector = bool.fromEnvironment('SELECTOR');
 
