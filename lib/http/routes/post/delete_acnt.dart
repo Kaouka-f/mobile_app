@@ -5,6 +5,6 @@ Future<dynamic> deleteAcnt(String id) async {
   final data = {
     'id': id,
   };
-  final res = post(data, "deleteAccount");
+  final res = post(data, "deleteAccount", withAuth: true);
   return res;
 }

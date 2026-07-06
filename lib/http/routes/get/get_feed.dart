@@ -4,6 +4,6 @@ Future<dynamic> getFeed(String id) async {
   final data = {
     'id': id,
   };
-  final res = await get(data, "getFeed");
+  final res = await get(data, "getFeed", withAuth: true);
   return res;
 }

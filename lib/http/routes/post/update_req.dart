@@ -6,6 +6,6 @@ Future<bool> updateReq(String id, String reqId, String newReq) async {
     'reqId': reqId,
     'newReq': newReq,
   };
-  final res = await post(data, "updateReq");
+  final res = await post(data, "updateReq", withAuth: true);
   return res;
 }

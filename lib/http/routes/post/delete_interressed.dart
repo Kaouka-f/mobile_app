@@ -5,6 +5,6 @@ Future<dynamic> deleteInterressed(String id, String reqId) async {
     'id': id,
     'reqId': reqId,
   };
-  final res = post(data, "deleteInterressed");
+  final res = post(data, "deleteInterressed", withAuth: true);
   return res;
 }

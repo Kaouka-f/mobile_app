@@ -5,6 +5,6 @@ Future<dynamic> deleteReq(String id, String reqId) async {
     'id': id,
     'reqId': reqId,
   };
-  final res = post(data, "deleteReq");
+  final res = post(data, "deleteReq", withAuth: true);
   return res;
 }

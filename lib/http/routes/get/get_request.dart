@@ -8,7 +8,8 @@ Future<ReqPerson?> getRequest(String reqId) async {
   final data = {
     'reqId': reqId,
   };
-  final res = await get(data, "getRequest");
+  // TODO: check if withAuth is needed here, if not remove it
+  final res = await get(data, "getRequest", withAuth: true);
   try {
     if (res != null) {
       request = ReqPerson(

@@ -5,6 +5,6 @@ Future<dynamic> paying(String id, String payId) async {
     'id': id,
     'payId': payId,
   };
-  final res = post(data, "paying");
+  final res = post(data, "paying", withAuth: true);
   return res;
 }

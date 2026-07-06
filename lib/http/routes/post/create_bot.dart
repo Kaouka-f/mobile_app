@@ -22,5 +22,5 @@ Future<dynamic> createBot(
     'lat': latitude,
     'password': 'zigzag'
   };
-  return await post(data, "createBot");
+  return await post(data, "createBot", withAuth: true);
 }

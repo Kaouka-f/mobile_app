@@ -9,7 +9,7 @@ Future<Map<String, dynamic>> getMsgs(String id, int thold) async {
     'thold': thold.toString(),
   };
   final DatabaseHelper databaseHelper = DatabaseHelper.instance;
-  final res = await get(data, "getMsgs");
+  final res = await get(data, "getMsgs", withAuth: true);
   res['msgs'].forEach((key, value) {
     if (value.isNotEmpty) {
       String personId = value['personId'];

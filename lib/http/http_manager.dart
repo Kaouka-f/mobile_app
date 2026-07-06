@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
+import 'package:kaouka/core/authService.dart';
 import 'package:kaouka/core/database.dart';
 import 'package:mime/mime.dart';
 import 'package:http_parser/http_parser.dart';
@@ -24,9 +25,8 @@ enum RequestType { get, post }
 SecurityContext securityContext = SecurityContext.defaultContext;
 final DatabaseHelper databaseHelper = DatabaseHelper.instance;
 
-Future<String> sendRequestInsecure(
-    RequestType type, Map<String, dynamic> queryParams, String path,
-    {bool withAuth = false}) async {
+Future<String> sendRequestInsecure(RequestType type,
+    Map<String, dynamic> queryParams, String path, bool withAuth) async {
   final HttpClient httpClient = HttpClient();
 
   try {
@@ -41,20 +41,20 @@ Future<String> sendRequestInsecure(
         ? await httpClient.getUrl(url)
         : await httpClient.postUrl(url);
 
+    if (withAuth) {
+      AuthService authService = AuthService();
+      final token = authService.sessionToken;
+      if (token != null) {
+        request.headers.set(HttpHeaders.authorizationHeader, 'Bearer $token');
+      }
+    }
+
     if (type == RequestType.post) {
       request.headers.set(
           HttpHeaders.contentTypeHeader, 'application/json; charset=utf-8');
       // final dataEmoji = jsonEncodeWithEmojiSupport(queryParams);
       final requestDataJson = jsonEncode(queryParams);
       request.write(requestDataJson);
-    }
-
-    if (withAuth) {
-      final storage = FlutterSecureStorage();
-      final token = await storage.read(key: 'session_token');
-      if (token != null) {
-        request.headers.set(HttpHeaders.authorizationHeader, 'Bearer $token');
-      }
     }
 
     final HttpClientResponse response = await request.close();
@@ -83,9 +83,8 @@ Future<String> sendRequestInsecure(
   return "";
 }
 
-Future<String> sendRequestSecure(
-    RequestType type, Map<String, dynamic> queryParams, String path,
-    {bool withAuth = false}) async {
+Future<String> sendRequestSecure(RequestType type,
+    Map<String, dynamic> queryParams, String path, bool withAuth) async {
   // Create a custom HttpClient with the custom security context
   final HttpClient httpClient = HttpClient(context: securityContext);
   // Make an HTTPS request using the custom HttpClient
@@ -106,20 +105,21 @@ Future<String> sendRequestSecure(
     final HttpClientRequest request = type == RequestType.get
         ? await httpClient.getUrl(url)
         : await httpClient.postUrl(url);
+
+    if (withAuth) {
+      AuthService authService = AuthService();
+      final token = authService.sessionToken;
+      if (token != null) {
+        request.headers.set(HttpHeaders.authorizationHeader, 'Bearer $token');
+      }
+    }
+
     if (type == RequestType.post) {
       request.headers.set(
           HttpHeaders.contentTypeHeader, 'application/json; charset=utf-8');
       // final dataEmoji = jsonEncodeWithEmojiSupport(queryParams);
       final requestDataJson = jsonEncode(queryParams);
       request.write(requestDataJson);
-    }
-
-    if (withAuth) {
-      final storage = FlutterSecureStorage();
-      final token = await storage.read(key: 'session_token');
-      if (token != null) {
-        request.headers.set(HttpHeaders.authorizationHeader, 'Bearer $token');
-      }
     }
 
     final HttpClientResponse response = await request.close();
@@ -162,13 +162,16 @@ String jsonEncodeWithEmojiSupport(Object object) {
   return characters.join('');
 }
 
-Future<dynamic> get(Map<String, dynamic> queryParams, String path) async {
+Future<dynamic> get(Map<String, dynamic> queryParams, String path,
+    {bool withAuth = false}) async {
   try {
     String response;
     if (secure) {
-      response = await sendRequestSecure(RequestType.get, queryParams, path);
+      response =
+          await sendRequestSecure(RequestType.get, queryParams, path, withAuth);
     } else {
-      response = await sendRequestInsecure(RequestType.get, queryParams, path);
+      response = await sendRequestInsecure(
+          RequestType.get, queryParams, path, withAuth);
     }
     if (response.isNotEmpty) {
       Map<String, dynamic> jsonData = jsonDecode(response);
@@ -183,13 +186,16 @@ Future<dynamic> get(Map<String, dynamic> queryParams, String path) async {
   }
 }
 
-Future<dynamic> post(Map<String, dynamic> data, String path) async {
+Future<dynamic> post(Map<String, dynamic> data, String path,
+    {bool withAuth = false}) async {
   try {
     String response;
     if (secure) {
-      response = await sendRequestSecure(RequestType.post, data, path);
+      response =
+          await sendRequestSecure(RequestType.post, data, path, withAuth);
     } else {
-      response = await sendRequestInsecure(RequestType.post, data, path);
+      response =
+          await sendRequestInsecure(RequestType.post, data, path, withAuth);
     }
     if (response.isNotEmpty) {
       dynamic jsonData = jsonDecode(response);
@@ -200,6 +206,7 @@ Future<dynamic> post(Map<String, dynamic> data, String path) async {
     if (kDebugMode) {
       print('Post Error occurred $path : $error');
     }
+    print('Post Error occurred $path : $error');
     return {};
   }
 }
@@ -253,6 +260,13 @@ Future<dynamic> sendFile(
     );
 
     var request = http.MultipartRequest('POST', uri);
+
+    // JWT
+    AuthService authService = AuthService();
+    final token = authService.sessionToken;
+    if (token != null) {
+      request.headers['Authorization'] = 'Bearer $token';
+    }
 
     // Files
     if (file.path.isNotEmpty) {

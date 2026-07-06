@@ -5,6 +5,6 @@ Future<dynamic> signalReq(String id, String reqId) async {
     'id': id,
     'reqId': reqId,
   };
-  final res = post(data, "signal_request");
+  final res = post(data, "signal_request", withAuth: true);
   return res;
 }

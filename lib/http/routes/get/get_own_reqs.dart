@@ -12,9 +12,10 @@ Future<dynamic> getOwnReqs(String id, String lastReqId) async {
     'id': id,
     'lastReqId': lastReqId,
   };
-  final res = await get(data, "getOwnReqs");
+  final res = await get(data, "getOwnReqs", withAuth: true);
   try {
     if (res != null) {
+      print(res);
       res.forEach((key, value) {
         requests.add(ReqPerson(
           person: Person(

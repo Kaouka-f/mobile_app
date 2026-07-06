@@ -13,7 +13,7 @@ Future<dynamic> sendMsg(
     // 'filename': file.path.isNotEmpty ? file.path.split('.').last : ''
   };
   // dynamic res = await sendFile(data, file, "sendMsg");
-  dynamic res = await post(data, "sendMsg");
+  dynamic res = await post(data, "sendMsg", withAuth: true);
   if (res['media'] != null) {
     filepath = res['media'];
   }

@@ -12,7 +12,7 @@ Future<dynamic> getInterressed(String id, String lastReqId) async {
     'id': id,
     'lastReqId': lastReqId,
   };
-  final res = await get(data, "getInterressed");
+  final res = await get(data, "getInterressed", withAuth: true);
   try {
     if (res != null) {
       res.forEach((key, value) {

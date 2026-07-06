@@ -7,7 +7,7 @@ Future<List<ReqPerson>> getArrounds(String id, double long, double lat) async {
   String longStr = long.toString();
   String latStr = lat.toString();
   Map<String, dynamic> data = {'id': id, 'long': longStr, 'lat': latStr};
-  final res = await get(data, "getArrounds");
+  final res = await get(data, "getArrounds", withAuth: true);
   List<ReqPerson> requests = [];
   try {
     if (res != null) {

@@ -2,7 +2,6 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:kaouka/components/custom_elevated_button.dart';
 import 'package:kaouka/core/database.dart';
-import 'package:kaouka/http/routes/get/retrieve_id.dart';
 import 'package:kaouka/http/routes/post/delete_acnt.dart';
 
 import 'package:kaouka/pages/login/login_page.dart';
@@ -47,10 +46,10 @@ class _AccountPageState extends State<AccountPage> {
     shared.clear();
     shared.init();
     // Bug: on delete account probleme
-    dynamic idObj = await retrieveId();
-    id = "${idObj['id']}_${idObj['privateId']}";
-    await databaseHelper.insertDbId(id);
-    shared.setId = encodeId(id);
+    // dynamic idObj = await retrieveId();
+    // id = "${idObj['id']}_${idObj['privateId']}";
+    // await databaseHelper.insertDbId(id);
+    // shared.setId = encodeId(id);
     Restart.restartApp();
   }
 

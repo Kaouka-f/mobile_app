@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kaouka/components/kavatar.dart';
 import 'package:kaouka/http/routes/get/get_infos.dart';
-import 'package:kaouka/http/routes/get/retrieve_id.dart';
 import 'package:kaouka/models/person.dart';
 import 'package:kaouka/core/shared_data.dart';
 import 'package:kaouka/models/bot.dart';
@@ -38,10 +37,10 @@ class _UserMenuState extends State<UserMenu> {
   }
 
   addUser() async {
-    dynamic idObj = await retrieveId();
+    // dynamic idObj = await retrieveId();
     // TODO: set bot true
-    await databaseHelper
-        .insertBot(Bot(id1: idObj['id'], id2: idObj['privateId']));
+    // await databaseHelper
+    //     .insertBot(Bot(id1: idObj['id'], id2: idObj['privateId']));
     getUsers();
   }
 

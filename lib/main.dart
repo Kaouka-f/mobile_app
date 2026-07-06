@@ -150,6 +150,7 @@ Future<void> main() async {
 
   // JWT
   jwt = await AuthService().getPersistentToken() ?? "";
+  print("Persistent token: $jwt");
   if (jwt.isNotEmpty) {
     final res = await refreshToken(jwt);
     if (res) {

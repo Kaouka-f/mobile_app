@@ -4,7 +4,7 @@ import 'package:kaouka/models/person.dart';
 Future<Person> getInfos(String id) async {
   Person people;
   Map<String, dynamic> data = {'personid': id};
-  final res = await get(data, "getInfos");
+  final res = await get(data, "getInfos", withAuth: true);
   people = (Person(
     id: id,
     name: res['name'] ?? "undefined",

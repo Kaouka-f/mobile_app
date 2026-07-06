@@ -4,6 +4,6 @@ Future<dynamic> getLikes(String reqId) async {
   final data = {
     'reqId': reqId,
   };
-  final res = await get(data, "getLikes");
+  final res = await get(data, "getLikes", withAuth: true);
   return res['likes'];
 }

@@ -6,7 +6,7 @@ import 'package:kaouka/models/request.dart';
 Future<List<ReqPerson>> getComments(String id, String lastReqId) async {
   List<ReqPerson> requests = [];
   Map<String, dynamic> data = {'id': id, 'lastReqId': lastReqId};
-  final res = await get(data, "getComments");
+  final res = await get(data, "getComments", withAuth: true);
   try {
     if (res != null) {
       res.forEach((key, value) {
