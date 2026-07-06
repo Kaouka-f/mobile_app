@@ -3,16 +3,10 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
 import 'package:kaouka/core/database.dart';
-import 'package:kaouka/models/message.dart';
-import 'package:kaouka/notifiers/message_notifier.dart';
-import 'package:kaouka/models/request.dart';
-import 'package:kaouka/core/shared_data.dart';
 import 'package:mime/mime.dart';
 import 'package:http_parser/http_parser.dart';
 import '../core/logging.dart';
 import 'dart:convert';
-import 'package:kaouka/models/person.dart';
-import 'package:kaouka/utils.dart';
 
 const mode = String.fromEnvironment('MODE');
 

@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:background_fetch/background_fetch.dart';
 import 'package:flutter/foundation.dart';
 import 'package:intl/date_symbol_data_local.dart';
+import 'package:kaouka/http/routes/get/refresh_token.dart';
 import 'package:kaouka/models/bot.dart';
 import 'package:kaouka/core/database.dart';
 import 'package:kaouka/pages/login/connect.dart';
@@ -25,6 +26,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'core/logging.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'dart:io' show Platform;
+import 'package:kaouka/core/authService.dart';
 
 SharedData sharedData = SharedData();
 const platform = MethodChannel('com.elaborium.kaouka/channel');
@@ -147,8 +149,13 @@ Future<void> main() async {
   final DatabaseHelper databaseHelper = DatabaseHelper.instance;
 
   // JWT
-  final storage = FlutterSecureStorage();
-  jwt = await storage.read(key: 'persistent_token') ?? '';
+  jwt = await AuthService().getPersistentToken() ?? "";
+  if (jwt.isNotEmpty) {
+    final res = await refreshToken(jwt);
+    if (res) {
+      jwt = "";
+    }
+  }
 
   // databaseHelper.recreateDatabase();
   if (Platform.isAndroid) {

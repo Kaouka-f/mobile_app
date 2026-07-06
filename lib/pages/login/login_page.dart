@@ -1,7 +1,7 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:kaouka/core/database.dart';
-import 'package:kaouka/http/routes/get/connect.dart';
+import 'package:kaouka/http/routes/post/connect.dart';
 import 'package:kaouka/pages/login/forgot_password.dart';
 import 'package:kaouka/pages/login/signup_page.dart';
 import 'package:kaouka/utils.dart';
@@ -63,18 +63,8 @@ class LoginPage extends StatelessWidget {
                   // TODO : ajouter password dans connect
                   res = await connect(pseudo, password);
                   if (!res) {
-                    // TODO: get jwt from API
-                    // String jwt = "${pseudo}_$password";
-                    // await databaseHelper.updateDbId(jwt);
-                    showPopUp(
-                        // ignore: use_build_context_synchronously
-                        context,
-                        "Connexion",
-                        "Connexion établi",
-                        () => ());
                     await FirebaseMessaging.instance.deleteToken();
                     String? token = await FirebaseMessaging.instance.getToken();
-                    print(token);
                     shared.setNotifToken = token!;
                     // ignore: use_build_context_synchronously
                     Navigator.push(
