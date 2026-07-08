@@ -5,8 +5,8 @@ Future<void> postName(String id, String name) async {
     "id": id,
     "name": name,
   };
-  final res = post(data, "postName", withAuth: true);
-  if (res.toString() == "true") {
+  final res = await post(data, "postName", withAuth: true);
+  if (res["status"] != 'success') {
     // TODO: handle error
   }
 }

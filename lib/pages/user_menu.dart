@@ -27,9 +27,11 @@ class _UserMenuState extends State<UserMenu> {
   getUsers() async {
     List<Bot> tmpUsers = await databaseHelper.getBots();
     for (var user in tmpUsers) {
-      Person infos = await getInfos(user.id1);
-      user.name = infos.name;
-      user.pp = infos.img;
+      Person? infos = await getInfos(user.id1);
+      if (infos != null) {
+        user.name = infos.name;
+        user.pp = infos.img;
+      }
     }
     setState(() {
       users = tmpUsers;
@@ -50,16 +52,19 @@ class _UserMenuState extends State<UserMenu> {
     // Restart.restartApp(); // reastarting app cause db damage
     // TODO: get user infos and set it in shared
     final infos = await getInfos(id1);
-    sharedData.name = infos.name;
-    sharedData.imageUrl = infos.img;
-    sharedData.imageOffset = Offset(infos.offsetX, infos.offsetY);
-    sharedData.imageScale = infos.scale;
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text("${infos.name} selected"),
-        duration: Duration(seconds: 2),
-      ),
-    );
+    if (infos != null) {
+      sharedData.name = infos.name;
+      sharedData.imageUrl = infos.img;
+      sharedData.imageOffset = Offset(infos.offsetX, infos.offsetY);
+      sharedData.imageScale = infos.scale;
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text("${infos.name} selected"),
+          duration: Duration(seconds: 2),
+        ),
+      );
+    }
   }
 
   @override

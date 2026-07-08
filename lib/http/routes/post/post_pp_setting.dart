@@ -8,8 +8,8 @@ Future<void> postPPSetting(
     "offsetX": offsetX.toString(),
     "offsetY": offsetY.toString(),
   };
-  final res = post(data, "postPPSetting", withAuth: true);
-  if (res.toString() == "true") {
+  final res = await post(data, "postPPSetting", withAuth: true);
+  if (res["status"] != 'success') {
     // TODO: handle error
   }
 }

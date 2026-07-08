@@ -5,8 +5,8 @@ Future<void> postNotifToken(String id, String notifToken) async {
     "id": id,
     "notifToken": notifToken,
   };
-  final res = post(data, "postNotifToken", withAuth: true);
-  if (res.toString() == "true") {
+  final res = await post(data, "postNotifToken", withAuth: true);
+  if (res["status"] != 'success') {
     // TODO: handle error
   }
 }

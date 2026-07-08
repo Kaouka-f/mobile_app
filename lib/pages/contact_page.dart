@@ -47,17 +47,19 @@ class _ContactPageState extends State<ContactPage> {
       for (var contactId in value) {
         if (contactId != decodeId1(id)) {
           final pInfos = await getInfos(contactId);
-          setState(() {
-            contacts.add(Contact(
-                id: contactId,
-                name: pInfos.name,
-                dist: '',
-                img: pInfos.img,
-                scale: pInfos.scale,
-                offsetX: pInfos.offsetX,
-                offsetY: pInfos.offsetY,
-                connected: pInfos.connected));
-          });
+          if (pInfos != null) {
+            setState(() {
+              contacts.add(Contact(
+                  id: contactId,
+                  name: pInfos.name,
+                  dist: '',
+                  img: pInfos.img,
+                  scale: pInfos.scale,
+                  offsetX: pInfos.offsetX,
+                  offsetY: pInfos.offsetY,
+                  connected: pInfos.connected));
+            });
+          }
         }
       }
     });

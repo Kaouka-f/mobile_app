@@ -69,6 +69,7 @@ class _ChatPageState extends State<ChatPage> {
 
   void getUserInfos() async {
     final infos = await getInfos(widget.id);
+    if (infos == null) return;
     setState(() {
       pseudo = infos.name;
       img = infos.img;
